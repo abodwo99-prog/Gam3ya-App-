@@ -6,28 +6,52 @@
 <title>إدارة الجمعية</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef2f6;--card:#fff;--tx:#12263f;--mu:#5f7186;--ac:#0b8f7a;--acs:#dff3ef;--gold:#e0a200;--golds:#fff4d1;--bd:#d5dde6;--red:#c0392b}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1722;--card:#16222f;--tx:#e6edf5;--mu:#8ea0b4;--ac:#3fcdb3;--acs:#13342f;--gold:#f2c14a;--golds:#3a3015;--bd:#2a3a4b;--red:#ff7b6b}}
+:root{--bg:#f1f4f8;--card:#fff;--tx:#10283f;--mu:#5d7084;--ac:#0b8f7a;--acs:#e1f4ef;--gold:#d99a00;--golds:#fff3cf;--bd:#dbe3ec;--red:#c0392b;--reds:#fdeceb;--hero:#10283f;--sh:0 1px 2px rgba(16,40,63,.06),0 8px 20px -10px rgba(16,40,63,.18)}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1520;--card:#14212f;--tx:#e6edf5;--mu:#8ea0b4;--ac:#3fcdb3;--acs:#123530;--gold:#f2c14a;--golds:#3a3015;--bd:#25364a;--red:#ff7b6b;--reds:#3a1d1d;--hero:#0a1a2a;--sh:none}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:"Cairo",Tahoma,Arial,sans-serif;line-height:1.7}
-main{max-width:980px;margin:0 auto;padding:20px 14px 48px}
-h1{font-size:1.7rem;font-weight:800;margin:0 0 4px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Cairo",Tahoma,Arial,sans-serif;line-height:1.7;padding-bottom:env(safe-area-inset-bottom,0px)}
+.hero{background:var(--hero);color:#fff;border-bottom:3px solid var(--gold);padding:calc(22px + env(safe-area-inset-top,0px)) 0 22px;margin-bottom:18px}
+.hin{max-width:980px;margin:0 auto;padding:0 14px}
+.hero h1{font-size:1.9rem;font-weight:800;margin:0;line-height:1.4}
+.hero p{margin:2px 0 0;color:#b9c9da}
+.hb{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:4px 14px;font-size:.9rem;margin-bottom:10px}
+.hb:hover{background:rgba(255,255,255,.18)}
+.ct{max-width:980px;margin:0 auto;padding:0 14px 48px}
 h2{font-size:1.05rem;font-weight:800;margin:0 0 10px}
 .sub{color:var(--mu);margin:0 0 14px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
 label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mu);gap:3px;flex:1;min-width:130px}
-input,select{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;width:100%}
+input,select{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:8px 11px;width:100%}
 input:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
-button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;padding:8px 14px}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 14px}
 button.p{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
 button.g{padding:2px 8px;color:var(--mu)}
 .d{color:var(--red)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.st{border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
+.st{border:1px solid var(--bd);border-radius:12px;padding:10px 13px;background:var(--card)}
+.card .st{background:transparent}
 .st b{display:block;font-size:1.3rem;font-weight:800}
 .st span{color:var(--mu);font-size:.85rem}
-.st.now{background:var(--golds);border-color:var(--gold)}
+.st.now{background:var(--golds)!important;border-color:var(--gold)}
+.st.alert{background:var(--reds);border-color:var(--red)}.st.alert b{color:var(--red)}
+.ov{margin-bottom:16px}
+.gcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.gc{display:flex;flex-direction:column;gap:6px;text-align:start;background:var(--card);border:1px solid var(--bd);border-inline-start:6px solid var(--bd);border-radius:14px;padding:16px 18px;box-shadow:var(--sh);transition:box-shadow .15s,border-color .15s}
+.gc:hover{border-color:var(--ac);box-shadow:0 10px 24px -10px rgba(16,40,63,.3)}
+.gc.done{border-inline-start-color:var(--ac)}.gc.wait{border-inline-start-color:var(--gold)}.gc.late{border-inline-start-color:var(--red)}
+.gt{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.gt b{font-size:1.15rem;font-weight:800;line-height:1.4}
+.chip{font-style:normal;font-size:.75rem;font-weight:600;border-radius:99px;padding:1px 10px;white-space:nowrap;background:var(--bg);color:var(--mu)}
+.done .chip{background:var(--acs);color:var(--ac)}.wait .chip{background:var(--golds);color:var(--tx)}.late .chip{background:var(--reds);color:var(--red)}
+.gm{color:var(--mu);font-size:.88rem}
+.gw{font-weight:600}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--bd)}
+.dots i.on{background:var(--ac)}
+.gf{color:var(--mu);font-size:.82rem}
+.gc.new{align-items:center;justify-content:center;min-height:150px;border:2px dashed var(--bd);box-shadow:none;color:var(--mu);font-weight:600}
+.gc.new b{font-size:2rem;line-height:1;color:var(--ac)}
 .wrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%}
 .grid{min-width:560px}
@@ -41,9 +65,9 @@ input[type=checkbox]{width:20px;height:20px;accent-color:var(--ac)}
 .tag{display:inline-block;background:var(--golds);border:1px solid var(--gold);border-radius:99px;padding:0 8px;font-size:.78rem;margin-inline-start:6px}
 .empty{color:var(--mu);text-align:center;padding:18px}
 .ok{color:var(--ac);font-weight:600}.bad{color:var(--red);font-weight:600}
-a.wa{color:var(--ac);font-weight:600;text-decoration:none;border:1px solid var(--ac);border-radius:8px;padding:2px 10px}
-.bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin-bottom:14px}
+a.wa{color:var(--ac);font-weight:600;text-decoration:none;border:1px solid var(--ac);border-radius:10px;padding:2px 10px}
 #toast{position:fixed;bottom:18px;inset-inline:14px;max-width:460px;margin:auto;background:var(--tx);color:var(--bg);padding:10px 14px;border-radius:10px;z-index:9}
+@media (prefers-reduced-motion:reduce){.gc{transition:none}}
 </style>
 </head>
 <body>
@@ -64,7 +88,7 @@ let sb=mk(K);
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=n=>Number(n||0).toLocaleString("ar-EG")+" جنيه";
-let G=null,GL=[],M=[],P=new Set();
+let G=null,GL=[],MA=[],M=[],P=new Set();
 
 function toast(t){const e=$("toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,4000)}
 const ym=(d=new Date())=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
@@ -83,32 +107,42 @@ async function init(){
   if(RO){const{data,error}=await sb.rpc("get_shared",{t:view});
     if(error||!data){$("app").innerHTML='<p class="empty">الرابط ده مش شغال أو اتغيّر.</p>';return}
     G=data.gameya;M=data.members;P=new Set(data.payments.map(x=>x.member_id+":"+x.month_idx));draw();return}
-  const{data:ok}=await sb.rpc("is_admin");
-  if(!ok)return askCode(K?"الكود غلط.":"");
   loadList()}
-async function loadList(sel){
-  const{data,error}=await sb.from("gameyas").select("*").order("created_at");
-  if(error)return toast("تعذر تحميل البيانات: "+error.message);
-  GL=data;G=GL.find(x=>x.id===(sel||G?.id))||GL[0]||null;
-  if(G)await loadG();else draw()}
-async function loadG(){
-  M=[];P=new Set();
-  const{data:m}=await sb.from("members").select("*").eq("gameya_id",G.id).order("position");M=m||[];
-  if(M.length){const{data:p}=await sb.from("payments").select("member_id,month_idx").in("member_id",M.map(x=>x.id));
-    P=new Set((p||[]).map(x=>x.member_id+":"+x.month_idx))}
-  draw()}
-function askCode(msg){
-  $("app").innerHTML=`<h1>إدارة الجمعية</h1><p class="sub">${msg||"اكتب كود الإدارة. هتكتبه مرة واحدة بس على كل جهاز."}</p>
-  <div class="card"><div class="row"><label>الكود<input id="cd" type="password" autocomplete="current-password"></label><button class="p" id="cb">دخول</button></div></div>`;
-  const go=()=>{K=clean($("cd").value);try{localStorage.setItem("ac",K)}catch(e){}sb=mk(K);init()};
-  $("cb").onclick=go;$("cd").onkeydown=e=>{if(e.key==="Enter")go()}}
+async function loadAll(sel){
+  const[g,m,p]=await Promise.all([sb.from("gameyas").select("*").order("created_at"),sb.from("members").select("*").order("position"),sb.from("payments").select("member_id,month_idx")]);
+  const er=g.error||m.error||p.error;if(er)return toast("تعذر تحميل البيانات: "+er.message);
+  GL=g.data;MA=m.data;P=new Set(p.data.map(x=>x.member_id+":"+x.month_idx));
+  const id=sel===undefined?G?.id:sel;G=GL.find(x=>x.id===id)||null;pick();draw()}
+const pick=()=>{M=G?MA.filter(x=>x.gameya_id===G.id):[]};
+const loadList=loadAll,loadG=()=>loadAll();
+const hero=(t,sub,b)=>`<header class="hero"><div class="hin">${b||""}<h1>${esc(t)}</h1>${sub?`<p>${sub}</p>`:""}</div></header>`;
+function info(g){const sg=G,sm=M;G=g;M=MA.filter(x=>x.gameya_id===g.id);
+  const r={n:M.length,paid:0,late:0,who:"",mo:"",flags:[]};
+  if(M.length){const c=curIdx();r.who=M[c].name;r.mo=mLabel(c);M.forEach(m=>{const on=P.has(m.id+":"+c);r.flags.push(on);if(on)r.paid++;if(late(m).cnt)r.late++})}
+  G=sg;M=sm;return r}
+function home(){
+  const I=GL.map(g=>({g,i:info(g)}));
+  const sum=f=>I.reduce((a,x)=>a+f(x),0);
+  let h=`<section class="stats ov"><div class="st"><b>${GL.length}</b><span>جمعيات شغالة</span></div>
+    <div class="st"><b>${sum(x=>x.i.n)}</b><span>إجمالي الأعضاء</span></div>
+    <div class="st"><b>${money(sum(x=>x.i.n*(+x.g.amount||0)))}</b><span>مجموع القبض الشهري</span></div>
+    <div class="st ${sum(x=>x.i.late)?"alert":""}"><b>${sum(x=>x.i.late)}</b><span>أعضاء متأخرين</span></div></section><div class="gcs">`;
+  h+=I.map(({g,i})=>{
+    const st=!i.n?"idle":i.late?"late":i.paid<i.n?"wait":"done";
+    const tx={idle:"لسه فاضية",late:i.late+" متأخر",wait:"في انتظار الدفع",done:"الكل دفع"}[st];
+    return`<button class="gc ${st}" data-a="open" data-id="${g.id}"><span class="gt"><b>${esc(g.name)}</b><em class="chip">${tx}</em></span>
+      <span class="gm">${i.n} أعضاء، القسط ${money(g.amount)} شهريًا</span>
+      <span class="gw">${i.n?`الدور على ${esc(i.who)} في ${i.mo}`:"أضف الأعضاء للبدء"}</span>
+      <span class="dots" aria-hidden="true">${i.flags.map(f=>`<i class="${f?"on":""}"></i>`).join("")}</span>
+      <span class="gf">${i.n?`${i.paid} من ${i.n} دفعوا الشهر ده`:""}</span></button>`}).join("");
+  h+=`<button class="gc new" data-a="newg"><b>+</b><span>جمعية جديدة</span></button></div>`;
+  $("app").innerHTML=hero("إدارة الجمعيات","لوحة بكل جمعياتك في مكان واحد")+'<div class="ct">'+h+'</div>';bind()}
 
 function draw(){
-  let h="";
-  if(!RO){h+=`<div class="bar"><div class="row"><select id="sel" aria-label="اختار الجمعية">${GL.map(g=>`<option value="${g.id}"${g.id===G?.id?" selected":""}>${esc(g.name)}</option>`).join("")}</select><button data-a="newg">جمعية جديدة</button></div><button class="g" data-a="out">خروج</button></div>`}
-  if(!G){$("app").innerHTML=h+'<p class="empty">لسه مفيش جمعيات. اضغط «جمعية جديدة».</p>';bind();return}
+  if(!RO&&!G)return home();
   const n=M.length,amt=+G.amount||0;
-  h+=`<h1>${esc(G.name)}</h1>`+(RO?'<p class="sub">عرض فقط</p>':"");
+  const top=hero(G.name,(RO?"عرض فقط: ":"")+(n?`${n} أعضاء، والقسط ${money(amt)} شهريًا`:"لسه مفيش أعضاء"),RO?"":'<button class="hb" data-a="home">كل الجمعيات</button>');
+  let h="";
   if(!RO)h+=`<section class="card"><h2>بيانات الجمعية</h2><div class="row">
     <label>الاسم<input id="gn" value="${esc(G.name)}"></label>
     <label>القسط الشهري<input id="ga" type="number" min="0" value="${amt}"></label>
@@ -116,7 +150,7 @@ function draw(){
     <label>يوم الاستحقاق (١-٢٨)<input id="gd" type="number" min="1" max="28" value="${G.due_day}"></label></div></section>`;
   if(!n){h+=RO?'<p class="empty">مفيش أعضاء لسه.</p>':""}
   else{
-    const cur=curIdx();let pn=0,tp=0;M.forEach(x=>{if(P.has(x.id+":"+cur))pn++});P.forEach(()=>tp+=amt);
+    const cur=curIdx();let pn=0,tp=0;M.forEach(x=>{if(P.has(x.id+":"+cur))pn++;for(let k=0;k<n;k++)if(P.has(x.id+":"+k))tp+=amt});
     h+=`<section class="card"><div class="stats">
     <div class="st"><b>${money(amt*n)}</b><span>قيمة القبض الشهري</span></div>
     <div class="st now"><b>${esc(M[cur].name)}</b><span>عليه الدور في ${mLabel(cur)}</span></div>
@@ -139,7 +173,7 @@ function draw(){
     M.map((m,r)=>{let c=0;return`<tr><td>${esc(m.name)}</td>`+M.map((_,i)=>{const on=P.has(m.id+":"+i);if(on)c++;
       return`<td class="${i===cur?"cur ":""}${i===r?"col":""}"><input type="checkbox" data-p="${m.id}:${i}"${on?" checked":""}${RO?" disabled":""} aria-label="${esc(m.name)} ${mLabel(i)}"></td>`}).join("")+`<td>${c} / ${n}</td></tr>`}).join("")+`</tbody></table></div></section>`}
   if(!RO)h+=`<div class="row"><button data-a="share">نسخ رابط المشاهدة</button><button data-a="exp">تصدير نسخة JSON</button><button class="d" data-a="delg">حذف الجمعية</button></div>`;
-  $("app").innerHTML=h;bind()}
+  $("app").innerHTML=top+'<div class="ct">'+h+'</div>';bind()}
 
 function bind(){
   if(RO)return;
@@ -150,7 +184,9 @@ async function saveSet(){
   const u={name:$("gn").value.trim()||G.name,amount:+$("ga").value||0,start_month:$("gs").value||G.start_month,due_day:Math.min(28,Math.max(1,+$("gd").value||1))};
   const{error}=await sb.from("gameyas").update(u).eq("id",G.id);if(error)return toast(error.message);Object.assign(G,u);draw()}
 async function run(q){const{error}=await q;if(error)toast(error.message);return!error}
-async function act(a,i){const m=M[i];
+async function act(a,i,b){const m=M[i];
+  if(a==="open"){G=GL.find(x=>x.id===b.dataset.id)||null;pick();window.scrollTo(0,0);return draw()}
+  if(a==="home"){G=null;pick();window.scrollTo(0,0);return draw()}
   if(a==="out"){try{localStorage.removeItem("ac")}catch(e){}return location.reload()}
   if(a==="newg"){const name=prompt("اسم الجمعية؟");if(!name)return;
     const{data,error}=await sb.from("gameyas").insert({name,start_month:ym()}).select().single();if(error)return toast(error.message);return loadList(data.id)}
@@ -169,7 +205,7 @@ async function act(a,i){const m=M[i];
     const x=document.createElement("a");x.href=URL.createObjectURL(b);x.download="gameya-"+ym()+".json";x.click();return}
   if(a==="delg"){if(confirm("حذف الجمعية «"+G.name+"» نهائيًا؟")&&await run(sb.from("gameyas").delete().eq("id",G.id))){G=null;loadList()}}}
 const n1=()=>M.length?Math.max(...M.map(x=>x.position))+1:0;
-document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(b)act(b.dataset.a,+b.dataset.i)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(b)act(b.dataset.a,+b.dataset.i,b)});
 document.addEventListener("change",async e=>{const c=e.target;if(RO||!c.dataset||!c.dataset.p)return;
   const[id,i]=c.dataset.p.split(":");
   const ok=await run(c.checked?sb.from("payments").insert({member_id:id,month_idx:+i}):sb.from("payments").delete().eq("member_id",id).eq("month_idx",+i));
